@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    <div class="container">
+        <h1>Update {{ user.name|title }}</h1>
+    </div>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.name.label }}
+            {{ form.name(class="form-control", value=user.name) }}
+            {{ form.email.label }}
+            {{ form.email(class="form-control", value=user.email) }}
+            {{ form.color.label }}
+            {{ form.color(class="form-control", value=user.color) }}
+            {{ form.submit(class='btn btn-dark mt-2') }}
+        </form>
+</div>
+{% endblock %}
