@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+<div class="container mt-5">
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    <h1>Dashboard</h1><br>
+
+    <div class="card shadow-sm bg-body-tertiary rounded">
+      <div class="card-header">
+        <h2>{{ current_user.name|title }}</h2>
+      </div>
+      <div class="card-body">
+            <h4 class="card-title">Details</h4>
+            <img src="static/images/pngegg.png" alt="user profile" width="100" class="float-end">
+            <h5 class="card-text">
+                <strong>Username: </strong>{{ current_user.username }}<br>
+                <strong>Email: </strong>{{ current_user.email }}<br>
+                <strong>Favorite color: </strong>{{ current_user.color }}<br>
+                <strong>About Author: </strong>{{ current_user.about_author }}<br>
+                <strong>Profile Picture: </strong>{{ current_user.profile_pic }}<br>
+            </h5>
+            <a href="{{ url_for('update', id=current_user.id) }}" class="btn btn-dark mt-4">Edit profile</a>
+            <a href="{{ url_for('delete', id=current_user.id) }}" class="btn btn-danger mt-4">Delete Account</a>
+
+
+      </div>
+
+    </div>
+
+
+</div>
+{% endblock %}

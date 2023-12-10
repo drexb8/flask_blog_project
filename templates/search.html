@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h1 class="mb-5">You searched for: {{ searching }}</h1>
+    {% if all_posts == [] %}
+        <h5>Nothing was found</h5>
+    {% else %}
+        {% for post in all_posts %}
+            <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+                <h3>{{ post.title }}</h3>
+                <p>By: {{ post.poster.name }}</p>
+                <p>{{ post.content }}<p>
+                <p><i>{{ post.date_posted }}</i><p>
+                <a href="{{ url_for('post', id=post.id) }}" type="button" class="btn btn-outline-dark">View post</a>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+</div>
+{% endblock %}
