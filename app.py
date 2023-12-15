@@ -162,6 +162,10 @@ def update(id):
         user.color = request.form['color']
         user.about_author = request.form['about_author']
         user.profile_pic = request.files['profile_pic']
+        #get the secured filename of the profile pic
+        profile_filename = secure_filename(user.profile_pic.filename)
+        unique_profile = str(uuid.uuid1()) + "_" + profile_filename
+        user.profile_pic = unique_profile
         db.session.commit()
         flash("User successfully updated!")
     form.name.data = user.name
